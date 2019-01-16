@@ -1,0 +1,18 @@
+{
+  "characters": [
+    {
+      "id": 1,
+      "name": "Mario",
+      "image": "src/mario.jpg",
+      "description": "Its me mario! Mario is a fun guy.",
+      "colour": "E52521"
+    },
+    {
+      "id": 2,
+      "name": "Bowser",
+      "image": "src/boswer.jpg",
+      "description": "Its me boswer! grrr",
+      "colour": "FBD000"
+    }
+  ]
+}
