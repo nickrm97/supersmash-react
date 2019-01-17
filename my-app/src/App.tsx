@@ -39,6 +39,13 @@ class App extends Component<{}, AppState> {
   renderCharacters(){
     return this.state.data.map((x, i) => <Card updateProfile={this.updateProfile} key={i} {...x}/>)
   }
+
+  renderProfile(){
+    if(this.state.currentCharacter.id != 0){
+      return (<Profile character={this.state.currentCharacter} />)
+    }
+    
+  }
   
   // Using an arrow function here to ensure we can reference this
   updateProfile = (id: number) =>{
@@ -57,7 +64,7 @@ class App extends Component<{}, AppState> {
         <div className="row">
           {this.renderCharacters()}
         </div>
-        <Profile character={this.state.currentCharacter} />
+        {this.renderProfile()}
       </div>
     );
   }

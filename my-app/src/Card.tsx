@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import styles from './Image.module.css'
 
 interface CardProps{
   id: number,
@@ -18,7 +19,7 @@ class Character extends Component<CardProps, {}> {
     render(){
         return(
                 <div onClick={this.handleClick} className="card" style={{width: "150px",marginBottom:"20px", background: this.props.colour}}>
-                    <img className="card-img-top" src={this.props.image} />
+                    <img className={styles.small} src={this.props.image} />
                     <div className="card-body">
                         <h4 className="card-title text-center">{this.props.name}</h4>
                     </div>
