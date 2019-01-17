@@ -13,14 +13,14 @@ export interface Character{
 
 interface AppState{
   data: Character[],
-  currentCharacter: Character | null
+  currentCharacter: Character
 }
 
 class App extends Component<{}, AppState> {
 
   state = {
     data: [],
-    currentCharacter: null
+    currentCharacter: ({id: 0, name: "", image: "", description: "", colour: ""})
   }  
 
   // HELP: When to define return type of a function
@@ -38,13 +38,10 @@ class App extends Component<{}, AppState> {
   renderCharacters(){
     return this.state.data.map(x => <Card {...x}/>)
   }
-
+  
   renderProfile(){
     if (this.state.currentCharacter){
       return (<Profile character={this.state.currentCharacter} />)
-    }
-    else{
-      console.log("Didn't create profile as currentcharacter is")
     }
   }
 
@@ -55,7 +52,9 @@ class App extends Component<{}, AppState> {
         <div className="row">
           {this.renderCharacters()}
         </div>
-          {this.renderProfile()}
+        {this.renderProfile()}
+        {/* <Profile
+        name= "Bowser" image= "src/boswer.jpg" description= "Its me boswer! grrr" colour= "#FBD000" /> */}
       </div>
     );
   }
