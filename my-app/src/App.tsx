@@ -23,7 +23,8 @@ class App extends Component<{}, AppState> {
     currentCharacter: ({id: 0, name: "", image: "", description: "", colour: ""})
   }  
 
-  // HELP: When to define return type of a function
+
+  // HELP: When to define return type of a function ??
   componentDidMount():void{
     const URL = "http://localhost:3001/characters/";
     axios.get(URL).then(
@@ -36,25 +37,27 @@ class App extends Component<{}, AppState> {
   }
 
   renderCharacters(){
-    return this.state.data.map(x => <Card {...x}/>)
+    return this.state.data.map((x, i) => <Card updateProfile={this.updateProfile} key={i} {...x}/>)
   }
   
-  renderProfile(){
-    if (this.state.currentCharacter){
-      return (<Profile character={this.state.currentCharacter} />)
-    }
+  // Using an arrow function here to ensure we can reference this
+  updateProfile = (id: number) =>{
+    const URL = "http://localhost:3001/characters/";
+    axios.get(URL + id + "/").then(
+      res => {
+        this.setState({currentCharacter: res.data});
+      }
+    )
   }
 
   render() {
     return (
       <div >
-        <h1>This is a fun react/typescript app</h1>
+        <h1>SuperSmashBros Characters :)</h1>
         <div className="row">
           {this.renderCharacters()}
         </div>
-        {this.renderProfile()}
-        {/* <Profile
-        name= "Bowser" image= "src/boswer.jpg" description= "Its me boswer! grrr" colour= "#FBD000" /> */}
+        <Profile character={this.state.currentCharacter} />
       </div>
     );
   }
